@@ -1,0 +1,36 @@
+{
+  "Footer": {
+    "copyright": "© 2024 Your App. All rights reserved."
+  },
+  "Login": {
+    "loginTitle": "Login",
+    "loginButton": "Login",
+    "loginEmailError": "Invalid email",
+    "loginError": "Login failed",
+    "inputEmail": "Email",
+    "inputPassword": "Password",
+    "title": "EduSpace Admin Dashboard"
+  },
+  "UserDropDown": {
+    "accountSetting": "Account Settings",
+    "logOut": "Log Out"
+  },
+  "SideBar": {
+    "product": "Product",
+    "branch": "Branche",
+    "home": "Home",
+    "main_menu": "Home",
+    "data": "Data",
+    "courses": "Courses",
+    "levels": "Levels",
+    "accounts": "Accounts",
+    "payements": "Payements",
+    "balances": "Balances",
+    "customers": "Customres",
+    "general": "General",
+    "developers": "Developers",
+    "settings": "Settings",
+    "updates": "Updates",
+    "changelog": "Changelog"
+  }
+}

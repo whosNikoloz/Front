@@ -1,0 +1,36 @@
+{
+  "Footer": {
+    "copyright": "© 2024 Your App. All rights reserved."
+  },
+  "Login": {
+    "loginTitle": "შესვლა",
+    "loginButton": "შესვლა",
+    "loginEmailError": "არასწორი ელ. ფოსტა",
+    "loginError": "შესვლა ვერ მოხერხდა",
+    "inputEmail": "ელ. ფოსტა",
+    "inputPassword": "პაროლი",
+    "title": "EduSpace ადმინ პანელი"
+  },
+  "UserDropDown": {
+    "accountSetting": "პროფილი",
+    "logOut": "გასვლა"
+  },
+  "SideBar": {
+    "product": "პროდუქტი",
+    "branch": "ფილიალი",
+    "home": "მთავარი",
+    "main_menu": "მთავარი მენიუ",
+    "accounts": "ანგარიშები",
+    "data": "მონაცემები",
+    "levels": "დონეები",
+    "courses": "კურსები",
+    "payements": "გადახდები",
+    "balances": "ბალანსები",
+    "customers": "კლიენტები",
+    "general": "ზოგადი",
+    "developers": "განვითარების გუნდმა",
+    "settings": "პარამეტრები",
+    "updates": "განახლებები",
+    "changelog": "ცვლილებები"
+  }
+}
