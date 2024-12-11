@@ -15,16 +15,16 @@ import Branchs from "@/app/api/Branch";
 import toast from "react-hot-toast";
 
 interface BranchModel {
-  BranchId: number;
-  BranchName_ka: string;
-  BranchName_en: string;
-  logoURL: string;
-  description_ka: string;
-  description_en: string;
+  branchId: number;
+  branchNameKa: string;
+  branchNameEn: string;
+  descriptionKa: string;
+  descriptionEn: string;
   products: [];
 }
+
 interface Props {
-  onUpdateBranch: (UpdatedLeve: BranchModel) => void;
+  onUpdateBranch: (UpdatedBranch: BranchModel) => void;
   Branch: BranchModel;
 }
 
@@ -36,10 +36,10 @@ interface ApiResponse<T> {
 export const EditBranch = ({ onUpdateBranch, Branch }: Props) => {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
-  const [name_en, setName_en] = useState(Branch.BranchName_en);
-  const [name_ka, setName_ka] = useState(Branch.BranchName_ka);
-  const [description_en, setDescription_en] = useState(Branch.description_en);
-  const [description_ka, setDescription_ka] = useState(Branch.description_ka);
+  const [name_en, setName_en] = useState(Branch.branchNameEn);
+  const [name_ka, setName_ka] = useState(Branch.branchNameKa);
+  const [description_en, setDescription_en] = useState(Branch.descriptionEn);
+  const [description_ka, setDescription_ka] = useState(Branch.descriptionKa);
   const [isLoading, setIsLoading] = useState(false);
 
   const BranchAPI = Branchs();
@@ -50,16 +50,15 @@ export const EditBranch = ({ onUpdateBranch, Branch }: Props) => {
     event.preventDefault();
 
     const newBranchData = {
-      BranchName_en: name_en,
-      BranchName_ka: name_ka,
-      description_en: description_en,
-      description_ka: description_ka,
-      logoURL: Branch.logoURL, // Assuming you keep the existing logo URL
+      branchNameEn: name_en,
+      branchNameKa: name_ka,
+      descriptionEn: description_en,
+      descriptionKa: description_ka,
     };
 
     setIsLoading(true);
     const response: ApiResponse<any> = (await BranchAPI.handleUpdateBranch(
-      Branch.BranchId,
+      Branch.branchId,
       newBranchData
     )) as ApiResponse<any>;
     if (response.status) {

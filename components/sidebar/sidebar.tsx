@@ -33,13 +33,13 @@ interface ApiResponse<T> {
   result?: T;
 }
 
-interface brancheModel {
-  brancheId: number;
-  brancheName_ka: string;
-  brancheName_en: string;
-  logoURL: string;
-  description_ka: string;
-  description_en: string;
+interface BranchModel {
+  branchId: number;
+  branchNameKa: string;
+  branchNameEn: string;
+  descriptionKa: string;
+  descriptionEn: string;
+  products: [];
 }
 
 export const SidebarWrapper = ({ lang }: Props) => {
@@ -48,7 +48,7 @@ export const SidebarWrapper = ({ lang }: Props) => {
   const translations = useTranslations(lang, "SideBar");
 
   const brancheAPi = Branchs();
-  const [Brances, setBranchs] = useState<brancheModel[]>([]);
+  const [Brances, setBranchs] = useState<BranchModel[]>([]);
 
   useEffect(() => {
     const fetchBranchs = async () => {
@@ -118,11 +118,9 @@ export const SidebarWrapper = ({ lang }: Props) => {
               <CollapseItems
                 icon={<ProductsIcon />}
                 items={Brances.map((branch, index) => ({
-                  id: branch.brancheId,
+                  id: branch.branchId,
                   name:
-                    lang === "en"
-                      ? branch.brancheName_en
-                      : branch.brancheName_ka,
+                    lang === "en" ? branch.branchNameEn : branch.branchNameKa,
                 }))}
                 title={translations.product}
               />

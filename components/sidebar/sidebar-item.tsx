@@ -2,6 +2,7 @@ import NextLink from "next/link";
 import React from "react";
 import { useSidebarContext } from "../layout/layout-context";
 import clsx from "clsx";
+import { deleteCustomCookie } from "@/actions/cookie.action";
 
 interface Props {
   title: string;
@@ -17,6 +18,7 @@ export const SidebarItem = ({ icon, title, isActive, href = "" }: Props) => {
     if (window.innerWidth < 768) {
       setCollapsed();
     }
+    deleteCustomCookie("branchid");
   };
   return (
     <NextLink

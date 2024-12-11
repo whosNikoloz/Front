@@ -7,12 +7,11 @@ import { DeleteBranch } from "./delete-branch";
 import { EditBranch } from "./edit-branch";
 
 interface BranchModel {
-  BranchId: number;
-  BranchName_ka: string;
-  BranchName_en: string;
-  logoURL: string;
-  description_ka: string;
-  description_en: string;
+  branchId: number;
+  branchNameKa: string;
+  branchNameEn: string;
+  descriptionKa: string;
+  descriptionEn: string;
   products: [];
 }
 
@@ -38,7 +37,7 @@ export const RenderBranchCell = ({
     }
   };
 
-  const CourseCount = Branch.products.length;
+  const ProductsCount = Branch.products?.length ?? 0;
 
   const handleBranchEdit = (updatedBranch: BranchModel) => {
     if (onBranchEdit) {
@@ -54,27 +53,27 @@ export const RenderBranchCell = ({
     case "name_en":
       return (
         <div className="flex items-center">
-          <span>{Branch.BranchName_en}</span>
+          <span>{Branch.branchNameEn}</span>
         </div>
       );
     case "name_ka":
       return (
         <div className="flex items-center">
-          <span>{Branch.BranchName_ka}</span>
+          <span>{Branch.branchNameKa}</span>
         </div>
       );
     case "description_ka":
-      return <span>{Branch.description_ka}</span>;
+      return <span>{Branch.descriptionKa}</span>;
     case "description_en":
-      return <span>{Branch.description_en}</span>;
-    case "courses":
-      return <span>{CourseCount}</span>;
+      return <span>{Branch.descriptionEn}</span>;
+    case "products":
+      return <span>{ProductsCount}</span>;
     case "actions":
       return (
         <div className="flex items-center gap-4">
           <EditBranch onUpdateBranch={handleBranchEdit} Branch={Branch} />
           <DeleteBranch
-            branchId={Branch.BranchId}
+            branchId={Branch.branchId}
             onBranchDelete={handleBranchRemove}
           />
         </div>

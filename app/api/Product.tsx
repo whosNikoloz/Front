@@ -47,12 +47,12 @@ const Products = () => {
     }
   };
 
-  const GetProductsByLevelId = async (branchId: number) => {
+  const GetProductsByBranchId = async (branchId: number) => {
     try {
       if (!serverUrl) {
         throw new Error("Server URL is not defined");
       }
-      const response = await fetch(serverUrl + branchId + `/Product`, {
+      const response = await fetch(serverUrl + `products/` + branchId, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -75,7 +75,7 @@ const Products = () => {
 
   const handleUpdateProduct = async (ProductId: number, ProductData: any) => {
     try {
-      const response = await fetch(serverUrl + "Products/" + ProductId, {
+      const response = await fetch(serverUrl + "products/" + ProductId, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -106,7 +106,7 @@ const Products = () => {
 
   const handleRemoveProduct = async (ProductId: number, logoPath: string) => {
     try {
-      const response = await fetch(serverUrl + "Product/" + ProductId, {
+      const response = await fetch(serverUrl + "products/" + ProductId, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -169,36 +169,6 @@ const Products = () => {
 
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-  const GetProductName = async (
-    notFormattedProductName: string,
-    lang: string
-  ) => {
-    try {
-      const response = await fetch(
-        `${serverUrl}Products/ProductName/${notFormattedProductName}?lang=${lang}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            // Include other headers if needed
-          },
-        }
-      );
-
-      if (response.ok) {
-        const ProductName = await response.text();
-        return ProductName;
-      } else {
-        const errorText = await response.text();
-        console.error("Products Get:", errorText); // Log the error
-        return errorText;
-      }
-    } catch (error) {
-      console.error("Products Get error:", error); // Log the error
-      return error;
-    }
-  };
-
   const ChangeProductLogo = async (
     picture: File,
     oldpicture: string,
@@ -224,14 +194,13 @@ const Products = () => {
         : null;
 
       // Send the uploaded picture URL to the server
-      const response = await fetch(serverUrl + "Product/UploadLogo", {
+      const response = await fetch(serverUrl + "products/image/" + Productid, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           // Include the bearer token in the Authorization header
         },
         body: JSON.stringify({
-          Productid,
           pictureUrl,
         }),
       });
@@ -317,13 +286,13 @@ const Products = () => {
     }
   };
 
-  const handleAddProduct = async (LevelId: number, ProductData: any) => {
+  const handleAddProduct = async (BranchId: number, ProductData: any) => {
     try {
       if (!serverUrl) {
         throw new Error("Server URL is not defined");
       }
 
-      const response = await fetch(serverUrl + LevelId + "/Product", {
+      const response = await fetch(serverUrl + "products/" + BranchId, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -355,8 +324,7 @@ const Products = () => {
   return {
     GetProducts,
     GetProduct,
-    GetProductName,
-    GetProductsByLevelId,
+    GetProductsByBranchId,
     handleAddProduct,
     handleUpdateProduct,
     handleRemoveProduct,

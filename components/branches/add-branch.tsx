@@ -34,10 +34,10 @@ export const AddBranch = ({ onAddNewBranch }: Props) => {
     event.preventDefault();
 
     const newBranchData = {
-      BranchName_en: name_en,
-      BranchName_ka: name_ka,
-      description_en: description_en,
-      description_ka: description_ka,
+      branchNameEn: name_en,
+      branchNameKa: name_ka,
+      descriptionEn: description_en,
+      descriptionKa: description_ka,
     };
 
     setIsLoading(true);

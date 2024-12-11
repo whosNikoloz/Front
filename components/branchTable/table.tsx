@@ -17,17 +17,16 @@ const columns = [
   { name: "NAME_KA", uid: "name_ka" },
   { name: "DESCRIPTION_EN", uid: "description_en" },
   { name: "DESCRIPTION_KA", uid: "description_ka" },
-  { name: "COURSES", uid: "courses" },
+  { name: "PRODUCTS", uid: "products" },
   { name: "ACTIONS", uid: "actions" },
 ];
 
 interface BranchModel {
-  BranchId: number;
-  BranchName_ka: string;
-  BranchName_en: string;
-  logoURL: string;
-  description_ka: string;
-  description_en: string;
+  branchId: number;
+  branchNameKa: string;
+  branchNameEn: string;
+  descriptionKa: string;
+  descriptionEn: string;
   products: [];
 }
 interface Props {
@@ -74,7 +73,7 @@ export const TableWrapper = ({
         </TableHeader>
         <TableBody items={localBranchs}>
           {(Branch) => (
-            <TableRow key={Branch.BranchId}>
+            <TableRow key={Branch.branchId}>
               {columns.map((column) => (
                 <TableCell key={column.uid}>
                   {RenderBranchCell({

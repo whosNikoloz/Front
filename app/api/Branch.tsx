@@ -4,7 +4,7 @@ const Branchs = () => {
   const GetBranch = async () => {
     try {
       const apiUrl = serverUrl;
-      const response = await fetch(apiUrl + "Branchs", {
+      const response = await fetch(apiUrl + "branches", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -29,7 +29,7 @@ const Branchs = () => {
 
   const handleRemoveBranch = async (BranchId: number) => {
     try {
-      const response = await fetch(serverUrl + "Branch/" + BranchId, {
+      const response = await fetch(serverUrl + "branches/" + BranchId, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const Branchs = () => {
 
   const handleUpdateBranch = async (BranchId: number, data: any) => {
     try {
-      const response = await fetch(serverUrl + "Branch/" + BranchId, {
+      const response = await fetch(serverUrl + "branches/" + BranchId, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -64,7 +64,7 @@ const Branchs = () => {
         const responseData = await response.json();
 
         if (responseData.status) {
-          return { success: true, result: responseData.result };
+          return { status: true, result: responseData.result };
         } else {
           return {
             status: false,
@@ -82,7 +82,7 @@ const Branchs = () => {
 
   const handleAddBranch = async (BranchData: any) => {
     try {
-      const response = await fetch(serverUrl + "Branch/", {
+      const response = await fetch(serverUrl + "branches", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

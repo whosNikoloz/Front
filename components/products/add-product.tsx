@@ -27,21 +27,19 @@ export const AddProduct = ({ onAddNewProduct, Branchid }: Props) => {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
   const [name_en, setName_en] = useState("");
   const [name_ka, setName_ka] = useState("");
-  const [description_en, setDescription_en] = useState("");
-  const [description_ka, setDescription_ka] = useState("");
-  const [formattedProductName, setFormattedProductName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState<number>(0); // Ensure the state is typed as number
   const [isLoading, setIsLoading] = useState(false);
 
   const handleAddProduct = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const newProductData = {
-      ProductName_ka: name_en,
-      ProductName_en: name_ka,
-      formattedProductName: formattedProductName,
-      description_ka: description_ka,
-      description_en: description_en,
-      ProductLogo: "", // Assuming you have a way to set this
+      productNameKa: name_en,
+      productNameEn: name_ka,
+      price: price,
+      description: description,
+      productLogo: "", // Assuming you have a way to set this
     };
 
     setIsLoading(true);
@@ -92,22 +90,22 @@ export const AddProduct = ({ onAddNewProduct, Branchid }: Props) => {
                 onChange={(e) => setName_ka(e.target.value)}
               />
               <Input
-                label="Fromatted Name"
+                label="Formatted Price"
                 variant="bordered"
-                value={formattedProductName}
-                onChange={(e) => setFormattedProductName(e.target.value)}
+                value={price.toString()} // Ensure this value is displayed correctly as a number
+                onChange={(e) => {
+                  const inputValue = e.target.value.replace(/[^0-9.]/g, ""); // Strip non-numeric characters
+                  const numericalValue = parseFloat(inputValue) || 0; // Convert to number, default to 0 if invalid
+                  setPrice(numericalValue);
+                }}
+                type="text"
+                inputMode="decimal"
               />
               <Input
                 label="Description_en"
                 variant="bordered"
-                value={description_en}
-                onChange={(e) => setDescription_en(e.target.value)}
-              />
-              <Input
-                label="Description_ka"
-                variant="bordered"
-                value={description_ka}
-                onChange={(e) => setDescription_ka(e.target.value)}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
               />
             </ModalBody>
             <ModalFooter>

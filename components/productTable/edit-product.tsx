@@ -16,9 +16,10 @@ import toast from "react-hot-toast";
 
 interface ProductModel {
   productId: number;
-  productName_ka: string;
-  productName_en: string;
-  formattedProductName: string;
+  productNameKa: string;
+  productNameEn: string;
+  price: string;
+  description: string;
   productLogo: string;
 }
 interface Props {
@@ -34,11 +35,10 @@ interface ApiResponse<T> {
 export const EditProduct = ({ onUpdateProduct, Product }: Props) => {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
-  const [name_en, setName_en] = useState(Product.productName_en);
-  const [name_ka, setName_ka] = useState(Product.productName_ka);
-  const [formattedProductName, setFormattedProductName] = useState(
-    Product.formattedProductName
-  );
+  const [name_en, setName_en] = useState(Product.productNameEn);
+  const [name_ka, setName_ka] = useState(Product.productNameKa);
+  const [description, setDescription] = useState(Product.description);
+  const [price, setPrice] = useState<number>(parseFloat(Product.price));
   const [isLoading, setIsLoading] = useState(false);
 
   const ProductAPI = Products();
@@ -49,9 +49,11 @@ export const EditProduct = ({ onUpdateProduct, Product }: Props) => {
     event.preventDefault();
 
     const newProductData = {
-      ProductName_en: name_en,
-      ProductName_ka: name_ka,
-      logoURL: Product.productLogo, // Assuming you keep the existing logo URL
+      productNameKa: name_en,
+      productNameEn: name_ka,
+      price: price,
+      description: description,
+      productLogo: Product.productLogo, // Assuming you keep the existing logo URL
     };
 
     setIsLoading(true);
@@ -91,6 +93,7 @@ export const EditProduct = ({ onUpdateProduct, Product }: Props) => {
                 value={name_en}
                 onChange={(e) => setName_en(e.target.value)}
               />
+
               <Input
                 label="Name_ka"
                 variant="bordered"
@@ -98,10 +101,22 @@ export const EditProduct = ({ onUpdateProduct, Product }: Props) => {
                 onChange={(e) => setName_ka(e.target.value)}
               />
               <Input
-                label="Formated Name"
+                label="Formatted Price"
                 variant="bordered"
-                value={formattedProductName}
-                onChange={(e) => setFormattedProductName(e.target.value)}
+                value={price.toString()} // Ensure this value is displayed correctly as a number
+                onChange={(e) => {
+                  const inputValue = e.target.value.replace(/[^0-9.]/g, ""); // Strip non-numeric characters
+                  const numericalValue = parseFloat(inputValue) || 0; // Convert to number, default to 0 if invalid
+                  setPrice(numericalValue);
+                }}
+                type="text"
+                inputMode="decimal"
+              />
+              <Input
+                label="Description_en"
+                variant="bordered"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
               />
             </ModalBody>
             <ModalFooter>

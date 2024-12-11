@@ -17,24 +17,25 @@ const columns = [
   { name: "Logo", uid: "logo" },
   { name: "NAME_EN", uid: "name_en" },
   { name: "NAME_KA", uid: "name_ka" },
-  { name: "FORMATED NAME", uid: "f_name" },
+  { name: "DESCRIPTION", uid: "des" },
   { name: "ACTIONS", uid: "actions" },
 ];
 
 interface ProductModel {
   productId: number;
-  productName_ka: string;
-  productName_en: string;
-  formattedProductName: string;
+  productNameKa: string;
+  productNameEn: string;
+  price: string;
+  description: string;
   productLogo: string;
 }
 
 interface Props {
   Products: ProductModel[];
   branchName: string;
-  onDeleteProduct: (courseId: number) => void;
+  onDeleteProduct: (productId: number) => void;
   onUpdateProduct: (updatedProduct: ProductModel) => void;
-  onChangeLogo: (newPicture: string, courseId: number) => void;
+  onChangeLogo: (newPicture: string, productId: number) => void;
 }
 
 export const TableWrapper = ({
@@ -47,7 +48,6 @@ export const TableWrapper = ({
   const [localProducts, setProducts] = useState<ProductModel[]>(Products);
   useEffect(() => {
     setProducts(Products);
-    console.log(Products);
   }, [Products]);
 
   const handleProductDelete = (courseId: number) => {
@@ -57,8 +57,8 @@ export const TableWrapper = ({
   const hanldeProductEdit = (updatedProduct: ProductModel) => {
     onUpdateProduct(updatedProduct);
   };
-  const handleChangeLogo = (newPicture: string, courseId: number) => {
-    onChangeLogo(newPicture, courseId);
+  const handleChangeLogo = (newPicture: string, productId: number) => {
+    onChangeLogo(newPicture, productId);
   };
 
   if (Products.length === 0) {

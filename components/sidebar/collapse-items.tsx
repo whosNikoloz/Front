@@ -46,7 +46,7 @@ export const CollapseItems = ({ icon, items, title }: Props) => {
                 key={item.id}
                 href={`/en/${encodeURIComponent(item.name)}`} // Level name in the URL
                 onClick={() =>
-                  createCustomCookie("levelid", item.id.toString())
+                  createCustomCookie("branchid", item.id.toString())
                 } // Store the ID in localStorage
                 className="w-full flex text-default-500 hover:text-default-900 transition-colors"
               >

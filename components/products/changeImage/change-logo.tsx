@@ -151,7 +151,7 @@ function ChangeProductLogo({
           {(onUploadModalClose) => (
             <>
               <ModalHeader className="text-center">
-                Add Profile Picture
+                Add Product Picture
               </ModalHeader>
               <ModalBody className="flex flex-col items-center gap-6 ">
                 <label

@@ -7,9 +7,10 @@ import ChangeProductLogo from "../products/changeImage/change-logo";
 
 interface ProductModel {
   productId: number;
-  productName_ka: string;
-  productName_en: string;
-  formattedProductName: string;
+  productNameKa: string;
+  productNameEn: string;
+  price: string;
+  description: string;
   productLogo: string;
 }
 
@@ -62,7 +63,7 @@ export const RenderProductCell = ({
           {Product.productLogo ? (
             <Image
               src={Product.productLogo}
-              alt={Product.productName_en}
+              alt={Product.productNameEn}
               width={40}
               height={40}
               className="rounded-full"
@@ -75,19 +76,19 @@ export const RenderProductCell = ({
     case "name_en":
       return (
         <div className="flex items-center">
-          <span>{Product.productName_en}</span>
+          <span>{Product.productNameEn}</span>
         </div>
       );
     case "name_ka":
       return (
         <div className="flex items-center">
-          <span>{Product.productName_ka}</span>
+          <span>{Product.productNameKa}</span>
         </div>
       );
-    case "f_name":
+    case "des":
       return (
         <div className="flex items-center">
-          <span>{Product.formattedProductName}</span>
+          <span>{Product.description}</span>
         </div>
       );
     case "actions":
@@ -96,7 +97,7 @@ export const RenderProductCell = ({
           <ChangeProductLogo
             ProductLogo={Product.productLogo}
             Productid={Product.productId}
-            ProductName={Product.productName_en}
+            ProductName={Product.productNameEn}
             onUpdateLogo={handleChangeLogo}
           />
           <EditProduct onUpdateProduct={handleProductEdit} Product={Product} />

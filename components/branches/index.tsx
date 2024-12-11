@@ -14,12 +14,11 @@ import { Toaster } from "react-hot-toast";
 import BranchAPI from "@/app/api/Branch";
 
 interface BranchModel {
-  BranchId: number;
-  BranchName_ka: string;
-  BranchName_en: string;
-  logoURL: string;
-  description_ka: string;
-  description_en: string;
+  branchId: number;
+  branchNameKa: string;
+  branchNameEn: string;
+  descriptionKa: string;
+  descriptionEn: string;
   products: [];
 }
 
@@ -30,6 +29,7 @@ interface ApiResponse<T> {
 
 export const BranchesIndex = () => {
   const [Branchs, setBranchs] = useState<BranchModel[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const BranchAPi = BranchAPI();
 
@@ -55,17 +55,22 @@ export const BranchesIndex = () => {
 
   const handleBranchDelete = (BranchId: number) => {
     setBranchs((prevBranchs) =>
-      prevBranchs.filter((Branch) => Branch.BranchId !== BranchId)
+      prevBranchs.filter((Branch) => Branch.branchId !== BranchId)
     );
   };
 
   const hanldeBranchEdit = (updatedBranch: BranchModel) => {
     setBranchs((prevBranchs) =>
       prevBranchs.map((Branch) =>
-        Branch.BranchId === updatedBranch.BranchId ? updatedBranch : Branch
+        Branch.branchId === updatedBranch.branchId ? updatedBranch : Branch
       )
     );
   };
+
+  const filteredBranchs = Branchs.filter((Branch) =>
+    Branch.branchNameEn.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="my-10 px-4 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
       <ul className="flex">
@@ -96,6 +101,8 @@ export const BranchesIndex = () => {
               mainWrapper: "w-full",
             }}
             placeholder="Search Branches"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
           <SettingsIcon />
           <TrashIcon />
@@ -108,7 +115,7 @@ export const BranchesIndex = () => {
       </div>
       <div className="max-w-[95rem] mx-auto w-full">
         <TableWrapper
-          Branchs={Branchs}
+          Branchs={filteredBranchs}
           onDeleteBranch={handleBranchDelete}
           onUpdateBranch={hanldeBranchEdit}
         />
