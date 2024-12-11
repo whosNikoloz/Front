@@ -1,4 +1,4 @@
-# NextJS EduSpace Admin Dashboard
+# NextJS Java Final Front Dashboard
 
 ### Dark Mode
 

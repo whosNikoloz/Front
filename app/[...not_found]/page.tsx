@@ -1,7 +1,6 @@
 "use client";
 
 import { Link } from "@nextui-org/react";
-import { EduSpace } from "@/components/EduSpaceLogo";
 import { usePathname } from "next/navigation";
 import TypingEffect from "@/components/typedtext";
 
@@ -19,16 +18,13 @@ export default function NotFound() {
           <div className="relative flex h-16 items-center justify-between">
             <div className="flex flex-1 items-center justify-center">
               <div className="flex flex-shrink-0 items-center">
-                <Link href="/">
-                  <EduSpace />
-                </Link>
                 <Link
                   href="/"
                   className={`font-bold text-inherit  dark:text-white text-white
                   }`}
                 >
                   {" "}
-                  EduSpace
+                  Not Found
                 </Link>
               </div>
             </div>
@@ -64,7 +60,7 @@ export default function NotFound() {
           <br />
           <p className="run font-mono">
             <TypingEffect
-              text={"EduSpace:/ErrorPage>"}
+              text={"/ErrorPage>"}
               options={{
                 typeSpeed: 10,
                 loop: false,

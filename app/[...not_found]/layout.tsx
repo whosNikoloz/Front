@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Page Not Found - EduSpace",
+  title: "Page Not Found - Java Final Project",
   description: "Page not found",
 };
 
@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="ka" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/eduspace.ico" sizes="any" />
+        <link rel="icon" sizes="any" />
       </head>
       <body>{children}</body>
     </html>
